@@ -10,7 +10,12 @@ public class MyShopApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(MyShopApplication.class, args);
-    log.debug("logging test = {}", MyShopApplication.class);
+
+    log.trace("trace message");
+    log.debug("debug message");
+    log.info("info message");
+    log.warn("warn message");
+    log.error("error message");
   }
 
 }
