@@ -18,6 +18,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(errorCode);
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleException(Exception e) {
+        ErrorCode errorCode = CommonErrorCode.INTERNAL_SERVER_ERROR;
+        return handleExceptionInternal(errorCode);
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException e) {
         CommonErrorCode errorCode = CommonErrorCode.INVALID_PARAMETER;
