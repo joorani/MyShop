@@ -48,4 +48,5 @@ public class Product extends BaseEntity{
     public ProductStatus setProductStatus() {
         return productStatus = (this.stockQuantity == 0) ? ProductStatus.OUT_OF_STOCK : ProductStatus.ON_SALE;
     }
+
 }
