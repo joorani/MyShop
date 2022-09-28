@@ -22,7 +22,11 @@ public class Product extends BaseEntity{
 
     private String imgPath;
 
+    @Enumerated(value = EnumType.STRING)
+    private ProductStatus productStatus;
+
     // 상점(판매자)
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
@@ -37,6 +41,11 @@ public class Product extends BaseEntity{
         this.stockQuantity = stockQuantity;
         this.price = price;
         this.imgPath = imgPath;
+        this.productStatus = setProductStatus();
         this.store = store;
+    }
+
+    public ProductStatus setProductStatus() {
+        return productStatus = (this.stockQuantity == 0) ? ProductStatus.OUT_OF_STOCK : ProductStatus.ON_SALE;
     }
 }
