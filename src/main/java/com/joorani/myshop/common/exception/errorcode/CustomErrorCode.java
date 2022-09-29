@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 @RequiredArgsConstructor
 public enum CustomErrorCode implements ErrorCode {
 
-    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "The Store does not exist"),
+    STORE_NOT_FOUND(HttpStatus.INTERNAL_SERVER_ERROR, "The Store does not exist"),
 
     /* 409 CONFLICT : Resource 의 현재 상태와 충돌. 보통 중복된 데이터 존재 */
     DUPLICATE_RESOURCE(HttpStatus.CONFLICT, "데이터가 이미 존재합니다."),
