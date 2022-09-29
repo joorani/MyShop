@@ -18,7 +18,7 @@ import static com.joorani.myshop.common.exception.errorcode.CustomErrorCode.STOR
 
 @Service
 @RequiredArgsConstructor
-public class RegisterProductService {
+public class ProductService {
 
     private final ProductRepository productRepository;
     private final StoreRepository storeRepository;

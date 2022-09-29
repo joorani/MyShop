@@ -25,10 +25,10 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-class RegisterProductServiceTest {
+class ProductServiceTest {
 
     @InjectMocks
-    private RegisterProductService registerProductService;
+    private ProductService productService;
 
     @Mock
     private StoreRepository storeRepository;
@@ -63,7 +63,7 @@ class RegisterProductServiceTest {
         when(productRepository.save(any())).thenReturn(product);
 
         //when
-        Product savedProduct = registerProductService.register(productRegisterForm, storeId);
+        Product savedProduct = productService.register(productRegisterForm, storeId);
 
         //then
         assertThat(savedProduct.getPrice()).isEqualTo(10000);
@@ -98,7 +98,7 @@ class RegisterProductServiceTest {
         when(productRepository.save(any())).thenReturn(product);
 
         //when
-        Product savedProduct = registerProductService.register(productRegisterForm, storeId);
+        Product savedProduct = productService.register(productRegisterForm, storeId);
 
         //then
         assertThat(savedProduct.getPrice()).isEqualTo(10000);
@@ -142,7 +142,7 @@ class RegisterProductServiceTest {
         when(storeRepository.findById(anyLong())).thenReturn(Optional.of(store));
         when(productRepository.findAllByStore(any())).thenReturn(productList);
 
-        List<RegisteredProductDto> registeredProductDtos = registerProductService.findAllProducts(storeId);
+        List<RegisteredProductDto> registeredProductDtos = productService.findAllProducts(storeId);
 
         assertThat(registeredProductDtos.get(0).getProductName()).isEqualTo(product1.getName());
         assertThat(registeredProductDtos.size()).isEqualTo(2);
