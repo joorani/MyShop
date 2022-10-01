@@ -1,6 +1,5 @@
-package com.joorani.myshop.product.domain.entity;
+package com.joorani.myshop.entity;
 
-import com.joorani.myshop.member.domain.entity.Store;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,23 +10,26 @@ import javax.persistence.*;
 public class Product extends BaseEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+    @Column
     private Long id;
 
+    @Column(unique = true, nullable = false, length = 20)
     private String name;
 
+    @Column(unique = true, nullable = false)
     private int stockQuantity;
 
+    @Column(unique = true, nullable = false)
     private int price;
 
+    @Column(unique = true, nullable = false)
     private String imgPath;
 
     @Enumerated(value = EnumType.STRING)
     private ProductStatus productStatus;
 
     // 상점(판매자)
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
