@@ -1,6 +1,5 @@
 package com.joorani.myshop.common.exception;
 
-import com.joorani.myshop.common.exception.errorcode.ErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
