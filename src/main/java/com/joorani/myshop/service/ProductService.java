@@ -1,12 +1,12 @@
-package com.joorani.myshop.product.service;
+package com.joorani.myshop.service;
 
 import com.joorani.myshop.common.exception.RestApiException;
-import com.joorani.myshop.member.domain.entity.Store;
-import com.joorani.myshop.member.domain.repository.StoreRepository;
-import com.joorani.myshop.product.domain.dtos.ProductRegisterForm;
-import com.joorani.myshop.product.domain.dtos.RegisteredProductDto;
-import com.joorani.myshop.product.domain.entity.Product;
-import com.joorani.myshop.product.repository.ProductRepository;
+import com.joorani.myshop.entity.Store;
+import com.joorani.myshop.repository.StoreRepository;
+import com.joorani.myshop.entity.dtos.ProductRegisterForm;
+import com.joorani.myshop.entity.dtos.RegisteredProductDto;
+import com.joorani.myshop.entity.Product;
+import com.joorani.myshop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package com.joorani.myshop.member.domain.entity;
+package com.joorani.myshop.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public abstract class UserBaseEntity {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Role role; //역할
+    private RoleType roleType; //역할
 
     @CreatedDate
     @Column(updatable = false)

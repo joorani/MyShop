@@ -1,6 +1,6 @@
-package com.joorani.myshop.product.repository;
+package com.joorani.myshop.repository;
 
-import com.joorani.myshop.product.domain.entity.Product;
+import com.joorani.myshop.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

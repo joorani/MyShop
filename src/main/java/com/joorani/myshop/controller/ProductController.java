@@ -1,8 +1,8 @@
-package com.joorani.myshop.product.controller;
+package com.joorani.myshop.controller;
 
-import com.joorani.myshop.product.domain.dtos.ProductRegisterForm;
-import com.joorani.myshop.product.domain.dtos.RegisteredProductDto;
-import com.joorani.myshop.product.service.ProductService;
+import com.joorani.myshop.entity.dtos.ProductRegisterForm;
+import com.joorani.myshop.entity.dtos.RegisteredProductDto;
+import com.joorani.myshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

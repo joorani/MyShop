@@ -1,8 +1,8 @@
-package com.joorani.myshop.product.domain.dtos;
+package com.joorani.myshop.entity.dtos;
 
 
-import com.joorani.myshop.member.domain.entity.Store;
-import com.joorani.myshop.product.domain.entity.Product;
+import com.joorani.myshop.entity.Store;
+import com.joorani.myshop.entity.Product;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

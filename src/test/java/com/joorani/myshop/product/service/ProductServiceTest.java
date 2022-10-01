@@ -1,12 +1,13 @@
 package com.joorani.myshop.product.service;
 
-import com.joorani.myshop.member.domain.entity.Store;
-import com.joorani.myshop.member.domain.repository.StoreRepository;
-import com.joorani.myshop.product.domain.dtos.ProductRegisterForm;
-import com.joorani.myshop.product.domain.dtos.RegisteredProductDto;
-import com.joorani.myshop.product.domain.entity.Product;
-import com.joorani.myshop.product.domain.entity.ProductStatus;
-import com.joorani.myshop.product.repository.ProductRepository;
+import com.joorani.myshop.entity.Store;
+import com.joorani.myshop.repository.StoreRepository;
+import com.joorani.myshop.entity.dtos.ProductRegisterForm;
+import com.joorani.myshop.entity.dtos.RegisteredProductDto;
+import com.joorani.myshop.entity.Product;
+import com.joorani.myshop.entity.ProductStatus;
+import com.joorani.myshop.repository.ProductRepository;
+import com.joorani.myshop.service.ProductService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,8 +45,6 @@ class ProductServiceTest {
 
         Store store = Store.builder()
                 .id(storeId)
-                .email("email@test.com")
-                .password("password")
                 .registeredNumber("12-345-677")
                 .storeName("store name")
                 .build();
@@ -79,8 +78,6 @@ class ProductServiceTest {
 
         Store store = Store.builder()
                 .id(storeId)
-                .email("email@test.com")
-                .password("password")
                 .registeredNumber("12-345-677")
                 .storeName("store name")
                 .build();
@@ -113,8 +110,6 @@ class ProductServiceTest {
 
         Store store = Store.builder()
                 .id(storeId)
-                .email("email@test.com")
-                .password("password")
                 .registeredNumber("12-345-677")
                 .storeName("store name")
                 .build();

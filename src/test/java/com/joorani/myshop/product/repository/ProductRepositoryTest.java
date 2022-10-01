@@ -1,8 +1,9 @@
 package com.joorani.myshop.product.repository;
 
-import com.joorani.myshop.member.domain.entity.Store;
-import com.joorani.myshop.member.domain.repository.StoreRepository;
-import com.joorani.myshop.product.domain.entity.Product;
+import com.joorani.myshop.entity.Store;
+import com.joorani.myshop.repository.StoreRepository;
+import com.joorani.myshop.entity.Product;
+import com.joorani.myshop.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,9 +27,9 @@ class ProductRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        store = Store.builder()
-                .email("email@test.com")
-                .password("password")
+
+        Store store = Store.builder()
+                .id(1L)
                 .registeredNumber("12-345-677")
                 .storeName("store name")
                 .build();

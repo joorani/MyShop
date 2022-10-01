@@ -1,6 +1,6 @@
-package com.joorani.myshop.product.domain.dtos;
+package com.joorani.myshop.entity.dtos;
 
-import com.joorani.myshop.product.domain.entity.ProductStatus;
+import com.joorani.myshop.entity.ProductStatus;
 import lombok.Builder;
 import lombok.Getter;
 

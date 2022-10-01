@@ -1,4 +1,4 @@
-package com.joorani.myshop.product.domain.entity;
+package com.joorani.myshop.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
