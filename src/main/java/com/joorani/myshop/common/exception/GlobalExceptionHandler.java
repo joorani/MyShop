@@ -1,8 +1,7 @@
 package com.joorani.myshop.common.exception;
 
-import com.joorani.myshop.common.exception.errorcode.CommonErrorCode;
-import com.joorani.myshop.common.exception.errorcode.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -12,49 +11,32 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(DBEmptyDataException.class)
+    public ResponseEntity<ErrorResponse> handleDataAccessException(Exception e) {
+        ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.DB_EMPTY_DATA_ERROR, e.getMessage());
+        log.error("error: {}, stacktrace: {}", errorResponse, e);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(RestApiException.class)
     public ResponseEntity<Object> handleCustomException(RestApiException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return handleExceptionInternal(errorCode);
+        ErrorResponse errorResponse = ErrorResponse.of(e.getErrorCode(), e.getMessage());
+        log.error("error: {}, stacktrace: {}", errorResponse, e);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleException(Exception e) {
-        ErrorCode errorCode = CommonErrorCode.INTERNAL_SERVER_ERROR;
-        return handleExceptionInternal(errorCode);
+        ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.INTERNAL_SERVER_ERROR, e.getMessage());
+        log.error("error: {}, stacktrace: {}", errorResponse, e);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException e) {
-        CommonErrorCode errorCode = CommonErrorCode.INVALID_PARAMETER;
-        return handleExceptionInternal(errorCode, e.getMessage());
+        ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.INVALID_VALUE, e.getMessage());
+        log.error("error: {}, stacktrace: {}", errorResponse, e);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    private ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode) {
-
-        return ResponseEntity.status(errorCode.getHttpStatus())
-                .body(makeErrorResponse(errorCode));
-    }
-
-    private ErrorResponse makeErrorResponse(ErrorCode errorCode) {
-        return ErrorResponse.builder()
-                .status(errorCode.getHttpStatus().value())
-                .code(errorCode.name())
-                .message(errorCode.getMessage())
-                .build();
-    }
-
-    private ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode, String message) {
-
-        return ResponseEntity.status(errorCode.getHttpStatus())
-                .body(makeErrorResponse(errorCode, message));
-    }
-
-    private ErrorResponse makeErrorResponse(ErrorCode errorCode, String message) {
-        return ErrorResponse.builder()
-                .status(errorCode.getHttpStatus().value())
-                .code(errorCode.name())
-                .message(message)
-                .build();
-    }
 }

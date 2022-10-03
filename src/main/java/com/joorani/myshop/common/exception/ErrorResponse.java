@@ -1,17 +1,20 @@
 package com.joorani.myshop.common.exception;
 
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@Builder
-@RequiredArgsConstructor
 public class ErrorResponse {
 
-    private final int status;
-    private final String code;
-    private final String message;
+    private String errorMessage;
+    private String errorCode;
 
+    public static ErrorResponse of(ErrorCode errorCode, String message) {
+        return new ErrorResponse(errorCode.getCode(), message);
+    }
+
+    public ErrorResponse(String errorMessage, String errorCode) {
+        this.errorMessage = errorMessage;
+        this.errorCode = errorCode;
+    }
 }
