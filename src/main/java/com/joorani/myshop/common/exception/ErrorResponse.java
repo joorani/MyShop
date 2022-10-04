@@ -13,8 +13,8 @@ public class ErrorResponse {
         return new ErrorResponse(errorCode.getCode(), message);
     }
 
-    public ErrorResponse(String errorMessage, String errorCode) {
-        this.errorMessage = errorMessage;
+    public ErrorResponse(String errorCode, String message) {
+        this.errorMessage = message;
         this.errorCode = errorCode;
     }
 }
