@@ -2,7 +2,7 @@ package com.joorani.myshop.controller;
 
 import com.joorani.myshop.entity.dtos.ProductRegisterForm;
 import com.joorani.myshop.entity.dtos.RegisteredProductDto;
-import com.joorani.myshop.service.ProductService;
+import com.joorani.myshop.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +12,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productServiceImpl;
 
     /**
      * 현재 URI에서 storeId를 받고 있지만 security 적용 후 role에 따라서가능여부 확인하는 방식으로 Refactoring
      */
     @PostMapping("/products/{storeId}")
     public Long register(@RequestBody ProductRegisterForm registerForm, @PathVariable Long storeId) {
-        return productService.register(registerForm, storeId).getId();
+        return productServiceImpl.registerProduct(registerForm, storeId);
     }
 
     /**
@@ -28,7 +28,7 @@ public class ProductController {
      */
     @GetMapping("/products/{storeId}")
     public List<RegisteredProductDto> findAllProducts(@PathVariable Long storeId) {
-        return productService.findAllProducts(storeId);
+        return productServiceImpl.findAllProducts(storeId);
     }
 
 }

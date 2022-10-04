@@ -1,23 +1,21 @@
 package com.joorani.myshop.entity.dtos;
 
-import com.joorani.myshop.entity.ProductStatus;
 import lombok.Builder;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 public class RegisteredProductDto {
 
     private String productName;
     private int price;
-    private int stockQuantity;
-    private ProductStatus productStatus;
+    private List<OptionDto> options;
 
     @Builder
-    public RegisteredProductDto(String productName, int price, int stockQuantity, ProductStatus productStatus) {
+    public RegisteredProductDto(String productName, int price, List<OptionDto> options) {
         this.productName = productName;
         this.price = price;
-        this.stockQuantity = stockQuantity;
-        this.productStatus = productStatus;
+        this.options = options;
     }
-
 }
