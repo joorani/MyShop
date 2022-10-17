@@ -3,10 +3,12 @@ package com.joorani.myshop.entity.dtos;
 import com.joorani.myshop.entity.Category;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ToString
 @Getter
 public class CategoryResponseDto {
 
@@ -30,15 +32,5 @@ public class CategoryResponseDto {
                 .depth(category.getDepth())
                 .children(category.getChildren().stream().map(CategoryResponseDto::of).collect(Collectors.toList()))
                 .build();
-    }
-
-    @Override
-    public String toString() {
-        return "CategoryResponseDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", depth=" + depth +
-                ", children=" + children +
-                '}';
     }
 }
