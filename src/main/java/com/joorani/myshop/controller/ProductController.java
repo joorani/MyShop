@@ -19,7 +19,7 @@ public class ProductController {
      */
     @PostMapping("/products/{storeId}")
     public Long register(@RequestBody ProductRegisterForm registerForm, @PathVariable Long storeId) {
-        return productService.register(registerForm, storeId).getId();
+        return productService.registerProduct(registerForm, storeId);
     }
 
     /**

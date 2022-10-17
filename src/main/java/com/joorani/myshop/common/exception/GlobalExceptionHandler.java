@@ -14,7 +14,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DBEmptyDataException.class)
     public ResponseEntity<ErrorResponse> handleDataAccessException(Exception e) {
         ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.DB_EMPTY_DATA_ERROR, e.getMessage());
-        log.error("error: {}, stacktrace: {}", errorResponse, e);
+        log.error("error: {}, stacktrace: {}", errorResponse, e.getStackTrace());
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
