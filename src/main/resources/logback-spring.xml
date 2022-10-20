@@ -9,7 +9,7 @@
     </appender>
 
     <!-- log root 레벨 설정 (logging.level.root=info)-->
-    <root level="debug">
+    <root level="info">
         <!--     참조할 appender 설정 - STDOUT -->
         <appender-ref ref="STDOUT" />
     </root>
