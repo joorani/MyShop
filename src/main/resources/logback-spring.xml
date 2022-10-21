@@ -3,7 +3,7 @@
     <!-- 콘솔(STDOUT)에 log 기록 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%F][%M]%X{trace-id} %msg %n
+            <Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %X{trace-id} %msg %n
             </Pattern>
         </layout>
     </appender>

@@ -40,10 +40,11 @@ public class LogTraceAspect {
             long endTime = System.currentTimeMillis();
             long runTime = endTime - startTime;
 
-            params.put("request_url", request.getRequestURL());
-            params.put("request_method", request.getMethod());
-            params.put("class_name", joinPoint.getSignature().getDeclaringType().getSimpleName());
-            params.put("latency_time", runTime);
+            params.put("Request url", request.getRequestURL());
+            params.put("Request Method", request.getMethod());
+            params.put("Class Name", joinPoint.getSignature().getDeclaringType().getName());
+            params.put("Method", joinPoint.getSignature().getName());
+            params.put("Latency time", runTime +" mills");
 
             log.info("params: {}", params);
         }
@@ -52,14 +53,18 @@ public class LogTraceAspect {
     @Around("jpaQuery()")
     public Object doQueryTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
-
+        Map<String, Object> params = new LinkedHashMap<>();
         try {
             return joinPoint.proceed();
         } finally {
             long endTime = System.currentTimeMillis();
             long runTime = endTime - startTime;
 
-            log.info("class name={}, Query_latency_time={}", joinPoint.getSignature().getDeclaringType().getSimpleName(), runTime);
+            params.put("Class Name", joinPoint.getSignature().getDeclaringType().getName());
+            params.put("Method Name", joinPoint.getSignature().getName());
+            params.put("Query Latency time", runTime + " mills");
+
+            log.info("params: {}", params);
         }
     }
 
