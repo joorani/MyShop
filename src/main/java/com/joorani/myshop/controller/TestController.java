@@ -1,5 +1,5 @@
 
-package com.joorani.myshop.common;
+package com.joorani.myshop.controller;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -8,17 +8,13 @@ import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
 public class TestController {
 
-    private final ApiLogger apiLogger;
 
     @Operation(summary = "test hello", description = "api 설명")
     @ApiResponses({
@@ -34,15 +30,5 @@ public class TestController {
         return ResponseEntity.ok("hello = " + name);
     }
 
-    @RequestMapping("log-demo")
-    public String logDemo(HttpServletRequest request) {
-        long startTime = System.currentTimeMillis();
-        String requestURL = request.getRequestURI();
-        apiLogger.setRequestURL(requestURL);
-
-        long endTime = System.currentTimeMillis();
-        apiLogger.log(getClass().toString(),  endTime-startTime);
-        return "logDemo";
-    }
 }
 
