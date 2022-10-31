@@ -3,6 +3,7 @@ package com.joorani.myshop.service;
 import com.joorani.myshop.common.exception.DBEmptyDataException;
 import com.joorani.myshop.entity.Product;
 import com.joorani.myshop.controller.dtos.ReviewSaveRequestDto;
+import com.joorani.myshop.entity.Review;
 import com.joorani.myshop.repository.ProductRepository;
 import com.joorani.myshop.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,11 @@ public class ReviewServiceImpl implements ReviewService {
 
         Product product = findProduct(productId);
         reviewRepository.save(reviewSaveRequestDto.toEntity(product));
+    }
+
+    @Override
+    public Review findReviewById(Long reviewId) {
+        return reviewRepository.findById(reviewId).orElseThrow(() -> new DBEmptyDataException("Not exist: Review id = " + reviewId));
     }
 
     private Product findProduct(Long productId) {
