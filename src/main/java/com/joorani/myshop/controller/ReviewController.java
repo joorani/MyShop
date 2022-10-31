@@ -1,6 +1,7 @@
 package com.joorani.myshop.controller;
 
 import com.joorani.myshop.controller.dtos.ReviewSaveRequestDto;
+import com.joorani.myshop.entity.Review;
 import com.joorani.myshop.service.ReviewService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -9,11 +10,10 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class ReviewController {
@@ -37,9 +37,18 @@ public class ReviewController {
                     content = @Content(schema = @Schema(implementation = ReviewSaveRequestDto.class)))
             @RequestBody ReviewSaveRequestDto reviewSaveRequestDto
     ) {
-
         reviewService.registerReview(orderNo, productId, reviewSaveRequestDto);
     }
 
-
+    @Operation(summary = "Review remove", description = "리뷰 삭제")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK !!!"),
+            @ApiResponse(code = 400, message = "BAD REQUEST !!!"),
+            @ApiResponse(code = 500, message = "INTERNAL SERVER ERROR !!")
+    })
+    @DeleteMapping("/reviews/{reviewId}")
+    public void remove(@PathVariable Long reviewId) {
+        Review review = reviewService.findReviewById(reviewId);
+        reviewService.remove(review);
+    }
 }

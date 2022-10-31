@@ -32,9 +32,13 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewRepository.findById(reviewId).orElseThrow(() -> new DBEmptyDataException("Not exist: Review id = " + reviewId));
     }
 
+    @Override
+    public void remove(Review review) {
+        reviewRepository.delete(review);
+    }
+
     private Product findProduct(Long productId) {
         log.info("findProduct ");
-        Product product = productRepository.findById(productId).orElseThrow(() -> new DBEmptyDataException("Not exist: product id = " + productId));
-        return product;
+        return productRepository.findById(productId).orElseThrow(() -> new DBEmptyDataException("Not exist: product id = " + productId));
     }
 }
