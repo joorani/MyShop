@@ -1,4 +1,4 @@
-package com.joorani.myshop.entity.dtos;
+package com.joorani.myshop.controller.dtos;
 
 import lombok.Builder;
 import lombok.Getter;

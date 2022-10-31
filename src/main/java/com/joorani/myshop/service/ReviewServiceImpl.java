@@ -2,7 +2,7 @@ package com.joorani.myshop.service;
 
 import com.joorani.myshop.common.exception.DBEmptyDataException;
 import com.joorani.myshop.entity.Product;
-import com.joorani.myshop.entity.dtos.ReviewSaveRequestDto;
+import com.joorani.myshop.controller.dtos.ReviewSaveRequestDto;
 import com.joorani.myshop.repository.ProductRepository;
 import com.joorani.myshop.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;

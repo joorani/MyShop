@@ -1,7 +1,7 @@
 package com.joorani.myshop.service;
 
-import com.joorani.myshop.entity.dtos.ProductRegisterForm;
-import com.joorani.myshop.entity.dtos.RegisteredProductDto;
+import com.joorani.myshop.controller.dtos.ProductRegisterForm;
+import com.joorani.myshop.controller.dtos.RegisteredProductDto;
 
 import java.util.List;
 

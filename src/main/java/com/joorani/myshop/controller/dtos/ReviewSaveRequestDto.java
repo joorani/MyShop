@@ -1,4 +1,4 @@
-package com.joorani.myshop.entity.dtos;
+package com.joorani.myshop.controller.dtos;
 
 import com.joorani.myshop.entity.OrderProductInfo;
 import com.joorani.myshop.entity.Product;
@@ -20,6 +20,5 @@ public class ReviewSaveRequestDto {
                 .productInfo(new OrderProductInfo(product.getId(), product.getName()))
                 .build();
     }
-
 
 }

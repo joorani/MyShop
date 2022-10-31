@@ -1,6 +1,6 @@
 package com.joorani.myshop.service;
 
-import com.joorani.myshop.entity.dtos.ReviewSaveRequestDto;
+import com.joorani.myshop.controller.dtos.ReviewSaveRequestDto;
 
 public interface ReviewService {
 
