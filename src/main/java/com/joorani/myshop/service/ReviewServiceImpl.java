@@ -1,8 +1,9 @@
 package com.joorani.myshop.service;
 
 import com.joorani.myshop.common.exception.DBEmptyDataException;
-import com.joorani.myshop.entity.Product;
+import com.joorani.myshop.controller.dtos.ReviewResponseDto;
 import com.joorani.myshop.controller.dtos.ReviewSaveRequestDto;
+import com.joorani.myshop.entity.Product;
 import com.joorani.myshop.entity.Review;
 import com.joorani.myshop.repository.ProductRepository;
 import com.joorani.myshop.repository.ReviewRepository;
@@ -10,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -30,8 +34,9 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review findReviewById(Long reviewId) {
-        return findReview(reviewId);
+    public ReviewResponseDto findReviewById(Long reviewId) {
+        Review review = findReview(reviewId);
+        return new ReviewResponseDto(review);
     }
 
     @Override
@@ -45,6 +50,14 @@ public class ReviewServiceImpl implements ReviewService {
     public void update(Long reviewId, ReviewSaveRequestDto reviewSaveRequestDto) {
         Review review = findReview(reviewId);
         review.update(reviewSaveRequestDto.getContent());
+    }
+
+    @Override
+    public List<ReviewResponseDto> findProductReviews(Long productId) {
+        List<Review> reviews = reviewRepository.findAllByProductInfoProductId(productId);
+        List<ReviewResponseDto> reviewResponseDtoList = reviews.stream().map(ReviewResponseDto::new).collect(Collectors.toList());
+
+        return reviewResponseDtoList;
     }
 
     private Review findReview(Long reviewId) {

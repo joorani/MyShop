@@ -20,13 +20,18 @@ public class Review extends BaseEntity {
     @Embedded
     private OrderProductInfo productInfo;
 
-    protected Review() {}
+    @Column(nullable = false)
+    private String author;
+
+    protected Review() {
+
+    }
 
     @Builder
-    public Review(Long id, String content, OrderProductInfo productInfo) {
-        this.id = id;
+    public Review(String content, OrderProductInfo productInfo, String author) {
         this.content = content;
-        setProductInfo(productInfo);
+        this.productInfo = productInfo;
+        this.author = author;
     }
 
     public void setProductInfo(OrderProductInfo productInfo) {

@@ -1,15 +1,19 @@
 package com.joorani.myshop.service;
 
+import com.joorani.myshop.controller.dtos.ReviewResponseDto;
 import com.joorani.myshop.controller.dtos.ReviewSaveRequestDto;
-import com.joorani.myshop.entity.Review;
+
+import java.util.List;
 
 public interface ReviewService {
 
     void registerReview(Long orderId, Long productId, ReviewSaveRequestDto reviewSaveRequestDto);
 
-    Review findReviewById(Long reviewId);
+    ReviewResponseDto findReviewById(Long reviewId);
 
     void remove(Long reviewId);
 
     void update(Long reviewId, ReviewSaveRequestDto reviewSaveRequestDto);
+
+    List<ReviewResponseDto> findProductReviews(Long productId);
 }
