@@ -5,7 +5,7 @@ import com.joorani.myshop.entity.Product;
 import com.joorani.myshop.entity.Store;
 import com.joorani.myshop.controller.dtos.OptionDto;
 import com.joorani.myshop.controller.dtos.ProductRegisterForm;
-import com.joorani.myshop.controller.dtos.RegisteredProductDto;
+import com.joorani.myshop.controller.dtos.ProductResponseDto;
 import com.joorani.myshop.repository.ProductRepository;
 import com.joorani.myshop.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,19 +37,26 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public List<RegisteredProductDto> findAllProducts(Long storeId) {
+    public List<ProductResponseDto> findAllProducts(Long storeId) {
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new DBEmptyDataException("Not exist: store id = " + storeId));
 
         List<Product> products = productRepository.findAllByStore(store.getId());
 
-        List<RegisteredProductDto> registeredProductDtos = products.stream().map(p -> RegisteredProductDto.builder()
+        List<ProductResponseDto> productResponseDtos = products.stream().map(p -> ProductResponseDto.builder()
                 .productName(p.getName())
                 .price(p.getPrice())
                 .options(p.getOptions().stream().map(OptionDto::of).collect(Collectors.toList()))
                 .build()).collect(Collectors.toList());
 
-        return registeredProductDtos;
+        return productResponseDtos;
     }
+
+    @Override
+    public ProductResponseDto findProductDetail(Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new DBEmptyDataException("Now exist: product id= " + productId));
+        return new ProductResponseDto(product);
+    }
+
 
 }
 
