@@ -10,4 +10,6 @@ public interface ReviewService {
     Review findReviewById(Long reviewId);
 
     void remove(Review review);
+
+    void update(Long reviewId, ReviewSaveRequestDto reviewSaveRequestDto);
 }

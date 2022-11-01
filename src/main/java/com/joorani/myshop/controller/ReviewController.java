@@ -51,4 +51,16 @@ public class ReviewController {
         Review review = reviewService.findReviewById(reviewId);
         reviewService.remove(review);
     }
+
+    @Operation(summary = "Review update", description = "리뷰 수정")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK !!!"),
+            @ApiResponse(code = 400, message = "BAD REQUEST !!!"),
+            @ApiResponse(code = 500, message = "INTERNAL SERVER ERROR !!")
+    })
+    @PatchMapping("/reviews/{reviewId}")
+    public void updateReview(@PathVariable Long reviewId, @RequestBody ReviewSaveRequestDto requestDto) {
+        reviewService.update(reviewId, requestDto);
+    }
+
 }

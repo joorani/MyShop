@@ -33,4 +33,8 @@ public class Review extends BaseEntity {
         if (productInfo == null) throw new IllegalArgumentException("No product");
         this.productInfo = productInfo;
     }
+
+    public void update(String content) {
+        this.content = content;
+    }
 }
