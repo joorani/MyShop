@@ -1,7 +1,6 @@
 package com.joorani.myshop.controller;
 
 import com.joorani.myshop.controller.dtos.ReviewSaveRequestDto;
-import com.joorani.myshop.entity.Review;
 import com.joorani.myshop.service.ReviewService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -48,8 +47,7 @@ public class ReviewController {
     })
     @DeleteMapping("/reviews/{reviewId}")
     public void remove(@PathVariable Long reviewId) {
-        Review review = reviewService.findReviewById(reviewId);
-        reviewService.remove(review);
+        reviewService.remove(reviewId);
     }
 
     @Operation(summary = "Review update", description = "리뷰 수정")
