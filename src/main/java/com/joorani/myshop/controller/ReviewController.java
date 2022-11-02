@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -34,7 +35,7 @@ public class ReviewController {
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "리뷰 작성", required = true,
                     content = @Content(schema = @Schema(implementation = ReviewSaveRequestDto.class)))
-            @RequestBody ReviewSaveRequestDto reviewSaveRequestDto
+            @RequestBody @Validated ReviewSaveRequestDto reviewSaveRequestDto
     ) {
         reviewService.registerReview(orderNo, productId, reviewSaveRequestDto);
     }
