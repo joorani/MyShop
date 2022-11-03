@@ -1,12 +1,10 @@
 package com.joorani.myshop.controller.dtos;
 
-import com.joorani.myshop.entity.Product;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
@@ -29,10 +27,4 @@ public class ProductResponseDto {
         this.reviews = reviews;
     }
 
-    public ProductResponseDto(Product entity) {
-        this.productName = entity.getName();
-        this.price = entity.getPrice();
-        this.options = entity.getOptions().stream().map(OptionDto::of).collect(Collectors.toList());
-        this.reviews = entity.getReviews().stream().map(ReviewResponseDto::new).collect(Collectors.toList());
-    }
 }

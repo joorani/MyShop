@@ -1,6 +1,7 @@
 package com.joorani.myshop.service;
 
 import com.joorani.myshop.common.exception.DBEmptyDataException;
+import com.joorani.myshop.controller.dtos.ReviewResponseDto;
 import com.joorani.myshop.entity.Product;
 import com.joorani.myshop.entity.Store;
 import com.joorani.myshop.controller.dtos.OptionDto;
@@ -22,6 +23,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final StoreRepository storeRepository;
+    private final ReviewService reviewService;
 
     // 추후 storeId 받지 않고 user 권한 확인하는 것으로 Refactoring 예정
 
@@ -54,7 +56,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponseDto findProductDetail(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new DBEmptyDataException("Now exist: product id= " + productId));
-        return new ProductResponseDto(product);
+
+        List<ReviewResponseDto> productReviews = reviewService.findProductReviews(productId);
+
+        return ProductResponseDto.builder().productName(product.getName())
+                .price(product.getPrice())
+                .reviews(productReviews)
+                .build();
+
     }
 
 
