@@ -1,7 +1,7 @@
 package com.joorani.myshop.service;
 
 import com.joorani.myshop.entity.Category;
-import com.joorani.myshop.entity.dtos.CategoryResponseDto;
+import com.joorani.myshop.controller.dtos.CategoryResponseDto;
 import com.joorani.myshop.repository.CategoryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

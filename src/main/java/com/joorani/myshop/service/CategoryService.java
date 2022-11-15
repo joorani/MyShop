@@ -1,6 +1,6 @@
 package com.joorani.myshop.service;
 
-import com.joorani.myshop.entity.dtos.CategoryResponseDto;
+import com.joorani.myshop.controller.dtos.CategoryResponseDto;
 
 import java.util.List;
 
