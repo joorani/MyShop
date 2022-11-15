@@ -1,4 +1,4 @@
-package com.joorani.myshop.controller.dtos;
+package com.joorani.myshop.entity.dtos;
 
 
 import com.joorani.myshop.entity.Product;

@@ -40,22 +40,12 @@ public class Product extends BaseEntity{
     @OneToMany(mappedBy = "product") //조회만 가능
     private List<ProductOption> options = new ArrayList<>();
 
-    @OneToMany
-    private List<Review> reviews = new ArrayList<>();
-
     protected Product() {
 
     }
 
     @Builder
-    public Product(String name,
-                   int price,
-                   String imgPath,
-                   ProductStatus productStatus,
-                   Store store,
-                   ProductCategory productCategory,
-                   List<ProductOption> options,
-                   List<Review> reviews) {
+    public Product(String name, int price, String imgPath, ProductStatus productStatus, Store store, ProductCategory productCategory, List<ProductOption> options) {
         this.name = name;
         this.price = price;
         this.imgPath = imgPath;
@@ -63,7 +53,6 @@ public class Product extends BaseEntity{
         this.store = store;
         this.productCategory = productCategory;
         this.options = options;
-        this.reviews = reviews;
     }
 
     public void addStore(Store store) {
