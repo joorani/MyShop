@@ -36,6 +36,7 @@ public class SearchRepositoryImpl implements SearchRepository{
                 .where(productNameContains(keyword))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
+                .orderBy(product.createdAt.desc())
                 .fetch();
 
         JPAQuery<Long> countQuery = queryFactory.select(product.count())
