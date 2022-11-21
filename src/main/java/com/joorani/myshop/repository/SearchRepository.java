@@ -1,10 +1,10 @@
 package com.joorani.myshop.repository;
 
 import com.joorani.myshop.controller.dtos.ProductResponseDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface SearchRepository {
 
-    List<ProductResponseDto> searchProduct(String keyword);
+    Page<ProductResponseDto> searchProduct(String keyword, Pageable pageable);
 }

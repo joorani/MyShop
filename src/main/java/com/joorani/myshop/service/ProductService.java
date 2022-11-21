@@ -1,8 +1,10 @@
 package com.joorani.myshop.service;
 
-import com.joorani.myshop.controller.dtos.ProductRegisterForm;
 import com.joorani.myshop.controller.dtos.ProductDetailResponseDto;
+import com.joorani.myshop.controller.dtos.ProductRegisterForm;
 import com.joorani.myshop.controller.dtos.ProductResponseDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -18,5 +20,5 @@ public interface ProductService {
     ProductDetailResponseDto findProductDetail(Long productId);
 
     //검색어로 상품 조회
-    List<ProductResponseDto> searchProducts(String keyword);
+    Page<ProductResponseDto> searchProducts(String keyword, Pageable pageable);
 }

@@ -5,6 +5,8 @@ import com.joorani.myshop.controller.dtos.ProductDetailResponseDto;
 import com.joorani.myshop.controller.dtos.ProductResponseDto;
 import com.joorani.myshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,7 +43,7 @@ public class ProductController {
      * 검색어로 상품 조회
      */
     @GetMapping("/search/integration")
-    public List<ProductResponseDto> searchIntegration(@RequestParam("q") String keyword) {
-        return productService.searchProducts(keyword);
+    public Page<ProductResponseDto> searchIntegration(@RequestParam("q") String keyword, Pageable pageable) {
+        return productService.searchProducts(keyword, pageable);
     }
 }

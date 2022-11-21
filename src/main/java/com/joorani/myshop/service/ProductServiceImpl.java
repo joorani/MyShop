@@ -8,6 +8,8 @@ import com.joorani.myshop.repository.ProductRepository;
 import com.joorani.myshop.repository.SearchRepository;
 import com.joorani.myshop.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,8 +70,8 @@ public class ProductServiceImpl implements ProductService {
      * 검색어로 상품 조회
      */
     @Override
-    public List<ProductResponseDto> searchProducts(String keyword) {
-        return searchRepository.searchProduct(keyword);
+    public Page<ProductResponseDto> searchProducts(String keyword, Pageable pageable) {
+        return searchRepository.searchProduct(keyword, pageable);
     }
 }
 

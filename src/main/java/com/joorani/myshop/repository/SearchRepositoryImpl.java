@@ -3,7 +3,11 @@ package com.joorani.myshop.repository;
 import com.joorani.myshop.controller.dtos.ProductResponseDto;
 import com.joorani.myshop.controller.dtos.QProductResponseDto;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -23,16 +27,24 @@ public class SearchRepositoryImpl implements SearchRepository{
     }
 
     @Override
-    public List<ProductResponseDto> searchProduct(String keyword) {
+    public Page<ProductResponseDto> searchProduct(String keyword, Pageable pageable) {
 
         List<ProductResponseDto> content = queryFactory.select(new QProductResponseDto(
                         product.imgPath, store.storeName, product.name, product.price))
                 .from(product)
                 .leftJoin(product.store, store)
                 .where(productNameContains(keyword))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        return content;
+        JPAQuery<Long> countQuery = queryFactory.select(product.count())
+                .from(product)
+                .leftJoin(product.store, store)
+                .where(productNameContains(keyword));
+
+        return PageableExecutionUtils.getPage(content, pageable, countQuery::fetchOne);
+
     }
 
     private BooleanExpression productNameContains(String keyword) {
