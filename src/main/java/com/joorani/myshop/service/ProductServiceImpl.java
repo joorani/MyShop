@@ -1,13 +1,11 @@
 package com.joorani.myshop.service;
 
 import com.joorani.myshop.common.exception.DBEmptyDataException;
-import com.joorani.myshop.controller.dtos.ReviewResponseDto;
+import com.joorani.myshop.controller.dtos.*;
 import com.joorani.myshop.entity.Product;
 import com.joorani.myshop.entity.Store;
-import com.joorani.myshop.controller.dtos.OptionDto;
-import com.joorani.myshop.controller.dtos.ProductRegisterForm;
-import com.joorani.myshop.controller.dtos.ProductDetailResponseDto;
 import com.joorani.myshop.repository.ProductRepository;
+import com.joorani.myshop.repository.SearchRepository;
 import com.joorani.myshop.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,16 +17,17 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final StoreRepository storeRepository;
     private final ReviewService reviewService;
+    private final SearchRepository searchRepository;
 
     // 추후 storeId 받지 않고 user 권한 확인하는 것으로 Refactoring 예정
 
     @Override
-    @Transactional
     public Long registerProduct(ProductRegisterForm registerForm, Long storeId) {
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new DBEmptyDataException("Not exist: store id = " + storeId));
         Product product = registerForm.toEntity();
@@ -38,7 +37,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
     public List<ProductDetailResponseDto> findAllProducts(Long storeId) {
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new DBEmptyDataException("Not exist: store id = " + storeId));
 
@@ -66,6 +64,12 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-
+    /**
+     * 검색어로 상품 조회
+     */
+    @Override
+    public List<ProductResponseDto> searchProducts(String keyword) {
+        return searchRepository.searchProduct(keyword);
+    }
 }
 

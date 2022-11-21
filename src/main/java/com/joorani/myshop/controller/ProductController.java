@@ -2,6 +2,7 @@ package com.joorani.myshop.controller;
 
 import com.joorani.myshop.controller.dtos.ProductRegisterForm;
 import com.joorani.myshop.controller.dtos.ProductDetailResponseDto;
+import com.joorani.myshop.controller.dtos.ProductResponseDto;
 import com.joorani.myshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,13 @@ public class ProductController {
     @GetMapping("products/{productId}")
     public ProductDetailResponseDto getProductInfo(@PathVariable Long productId) {
         return productService.findProductDetail(productId);
+    }
+
+    /**
+     * 검색어로 상품 조회
+     */
+    @GetMapping("/search/integration")
+    public List<ProductResponseDto> searchIntegration(@RequestParam("q") String keyword) {
+        return productService.searchProducts(keyword);
     }
 }
