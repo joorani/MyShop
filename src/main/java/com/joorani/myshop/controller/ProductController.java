@@ -1,7 +1,7 @@
 package com.joorani.myshop.controller;
 
 import com.joorani.myshop.controller.dtos.ProductRegisterForm;
-import com.joorani.myshop.controller.dtos.ProductResponseDto;
+import com.joorani.myshop.controller.dtos.ProductDetailResponseDto;
 import com.joorani.myshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +27,12 @@ public class ProductController {
      * 사용자의 role에 따라서 조건을 달리해서 검색하도록 Refactoring
      */
     @GetMapping("/products")
-    public List<ProductResponseDto> findAllProducts(@RequestParam("storeId") Long storeId) {
+    public List<ProductDetailResponseDto> findAllProducts(@RequestParam("storeId") Long storeId) {
         return productService.findAllProducts(storeId);
     }
 
     @GetMapping("products/{productId}")
-    public ProductResponseDto getProductInfo(@PathVariable Long productId) {
+    public ProductDetailResponseDto getProductInfo(@PathVariable Long productId) {
         return productService.findProductDetail(productId);
     }
 }

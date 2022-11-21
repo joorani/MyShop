@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class ProductResponseDto {
+public class ProductDetailResponseDto {
 
     private String productName;
     private int price;
@@ -16,10 +16,10 @@ public class ProductResponseDto {
     private List<ReviewResponseDto> reviews;
 
     @Builder
-    public ProductResponseDto(String productName,
-                              int price,
-                              List<OptionDto> options,
-                              List<ReviewResponseDto> reviews
+    public ProductDetailResponseDto(String productName,
+                                    int price,
+                                    List<OptionDto> options,
+                                    List<ReviewResponseDto> reviews
     ) {
         this.productName = productName;
         this.price = price;
