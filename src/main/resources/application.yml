@@ -13,7 +13,7 @@ spring:
     username: sa
     password:
   profiles:
-    active: test
+    active: local
 
   jpa:
     show-sql: true

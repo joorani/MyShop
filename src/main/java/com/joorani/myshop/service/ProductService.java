@@ -21,4 +21,8 @@ public interface ProductService {
 
     //검색어로 상품 조회
     Page<ProductResponseDto> searchProducts(String keyword, Pageable pageable);
+
+    Page<ProductResponseDto> searchProducts(String keyword, String sortCondition, Pageable pageable);
+
+
 }

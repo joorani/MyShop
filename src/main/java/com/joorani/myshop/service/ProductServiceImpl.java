@@ -73,5 +73,10 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductResponseDto> searchProducts(String keyword, Pageable pageable) {
         return searchRepository.searchProduct(keyword, pageable);
     }
+
+    @Override
+    public Page<ProductResponseDto> searchProducts(String keyword, String sortCondition, Pageable pageable) {
+        return searchRepository.searchProduct(keyword, sortCondition, pageable);
+    }
 }
 

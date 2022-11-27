@@ -46,4 +46,10 @@ public class ProductController {
     public Page<ProductResponseDto> searchIntegration(@RequestParam("q") String keyword, Pageable pageable) {
         return productService.searchProducts(keyword, pageable);
     }
+
+
+    @GetMapping("/search/products")
+    public Page<ProductResponseDto> searchProductOrderBy(@RequestParam("q") String keyword, @RequestParam("sort") String sortCondition, Pageable pageable) {
+        return productService.searchProducts(keyword, sortCondition, pageable);
+    }
 }
