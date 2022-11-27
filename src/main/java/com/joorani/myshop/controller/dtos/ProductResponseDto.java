@@ -1,30 +1,20 @@
 package com.joorani.myshop.controller.dtos;
 
-import lombok.Builder;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Getter
-@NoArgsConstructor
 public class ProductResponseDto {
-
+    private String imgPath;
+    private String storeName;
     private String productName;
     private int price;
-    private List<OptionDto> options;
-    private List<ReviewResponseDto> reviews;
 
-    @Builder
-    public ProductResponseDto(String productName,
-                              int price,
-                              List<OptionDto> options,
-                              List<ReviewResponseDto> reviews
-    ) {
+    @QueryProjection
+    public ProductResponseDto(String imgPath, String storeName, String productName, int price) {
+        this.imgPath = imgPath;
+        this.storeName = storeName;
         this.productName = productName;
         this.price = price;
-        this.options = options;
-        this.reviews = reviews;
     }
-
 }
